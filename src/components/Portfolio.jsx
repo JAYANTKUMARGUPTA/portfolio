@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import emailjs from 'emailjs-com';
 import { FiGithub, FiLinkedin, FiMail, FiDownload, FiMoon, FiSun, FiCpu, FiExternalLink, FiArrowRight, FiSend, FiShare2, FiMapPin, FiClock, FiTwitter } from "react-icons/fi";
-import { FaGitAlt, FaGithub, FaDocker  } from "react-icons/fa";
+import { FaGitAlt, FaGithub, FaDocker } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoPython, IoLogoReact, IoLogoNodejs } from "react-icons/io5";
 import { SiC, SiCplusplus, SiExpress, SiRender } from "react-icons/si";
 import { SiTailwindcss, SiMongodb, SiPostgresql, SiTypescript } from "react-icons/si";
@@ -126,6 +127,21 @@ const Portfolio = () => {
         console.log(formData);
         // Reset form after submission
         setFormData({ name: "", email: "", message: "" });
+       
+        emailjs.send(
+            'service_43aocer',
+            'template_hh23xha',
+            formData,
+            'jOLscADcUEPg2jARp'
+        ).then(
+            (result) => {
+                alert("Message sent successfully!");
+            },
+            (error) => {
+                alert("Failed to send message. Try again later.");
+                console.error(error);
+            }
+        );
     };
 
     return (
