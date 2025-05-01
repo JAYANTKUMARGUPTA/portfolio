@@ -360,26 +360,17 @@ const Portfolio = () => {
                                 <motion.img
                                     src="/pic1.jpg"
                                     alt="Jayant Kumar Gupta"
-                                    className="w-full h-full rounded-full object-cover relative z-10 
-                                                border-2 sm:border-4 border-white dark:border-gray-800 
-                                                shadow-xl sm:shadow-[0_20px_50px_rgba(59,130,246,0.35)] 
-                                                transition-all duration-300 ease-in-out"
+                                    className="w-full h-full rounded-full object-cover relative z-10 border-2 sm:border-4 border-white dark:border-gray-800 shadow-lg sm:shadow-2xl"
                                     whileHover={{
-                                        scale: 1.08,
-                                        rotateZ: 2,
-                                        rotateY: 3,
-                                        boxShadow: '0 35px 65px -15px rgba(59,130,246,0.35)',
+                                        scale: 1.05,
+                                        boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25)'
                                     }}
                                     transition={{
-                                        scale: { type: "spring", stiffness: 250, damping: 12 },
-                                        rotateZ: { duration: 0.3 },
-                                        rotateY: { duration: 0.3 },
+                                        scale: { type: "spring", stiffness: 300, damping: 10 },
                                         boxShadow: { duration: 0.3 }
                                     }}
                                     style={{
-                                        transformStyle: 'preserve-3d',
-                                        backfaceVisibility: 'hidden',
-                                        perspective: 1000,
+                                        transformStyle: 'preserve-3d'
                                     }}
                                 />
 
