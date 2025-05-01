@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiDownload, FiMoon, FiSun, FiCpu, FiExternalLink, FiArrowRight, FiSend, FiShare2, FiMapPin, FiClock, FiTwitter } from "react-icons/fi";
-import { FaGitAlt, FaGithub } from "react-icons/fa";
+import { FaGitAlt, FaGithub, FaDocker  } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoPython, IoLogoReact, IoLogoNodejs } from "react-icons/io5";
 import { SiC, SiCplusplus, SiExpress, SiRender } from "react-icons/si";
 import { SiTailwindcss, SiMongodb, SiPostgresql, SiTypescript } from "react-icons/si";
@@ -30,7 +30,8 @@ const Portfolio = () => {
         { name: "MongoDB", level: 85, icon: <SiMongodb className="text-green-600" /> },
         { name: "Git", level: 80, icon: <FaGitAlt className="text-orange-600" /> },
         { name: "GitHub", level: 85, icon: <FaGithub className="text-black dark:text-white" /> },
-        { name: "Render", level: 87, icon: <SiRender className="text-purple-600" /> }
+        { name: "Render", level: 87, icon: <SiRender className="text-purple-600" /> },
+        { name: "Docker", level: 40, icon: <FaDocker className="text-blue-500" /> },
     ];
 
 
@@ -150,7 +151,7 @@ const Portfolio = () => {
                                         &lt;/&gt;
                                     </motion.span>
                                     <span className="hidden sm:inline">Portfolio</span>
-                                    <span className="sm:hidden">JG</span>
+                                    <span className="sm:hidden">Portfolio</span>
                                 </a>
                             </motion.div>
 
