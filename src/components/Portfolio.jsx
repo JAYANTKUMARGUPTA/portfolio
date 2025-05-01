@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 const Portfolio = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -74,6 +75,14 @@ const Portfolio = () => {
             github: "https://github.com/JAYANTKUMARGUPTA/Todo-list",
             demo: "https://jktodolist.netlify.app/"
         },
+        {
+            title: "Diet Tracker",
+            description: "Simple and intuitive Diet Tracker to log meals, monitor calories, and maintain healthy habits — with offline support and clean UI for daily tracking.",
+            image: "https://media.istockphoto.com/id/1479492035/photo/a-concept-of-balanced-nutrition-in-everyday-life.webp?a=1&b=1&s=612x612&w=0&k=20&c=_aGwWlnux33bkevqg3mheqY705h4WNA5uGhNphqoNOs=",
+            tech: ["HTML", "Css", "JavaScript"],
+            github: "https://github.com/JAYANTKUMARGUPTA/Diet-tracker",
+            demo: "https://jkdiet-tracker.netlify.app/"
+        },
     ];
 
     // const experience = [
@@ -121,27 +130,117 @@ const Portfolio = () => {
     return (
         <div className={`${darkMode ? "dark" : ""}`}>
             <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-                <header className="fixed w-full bg-white dark:bg-gray-900 shadow-lg z-50">
-                    <nav className="container mx-auto px-6 py-4">
+                <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg z-50 transition-all duration-300 border-b border-gray-200/50 dark:border-gray-700/30">
+                    <nav className="container mx-auto px-4 sm:px-6 py-3">
                         <div className="flex items-center justify-between">
-                            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Portfolio</h1>
-                            <div className="flex items-center space-x-6">
-                                <div className="hidden md:flex items-center space-x-8">
-                                    {["home", "about", "skills", "projects", "contact"].map((item) => (
-                                        <a
-                                            key={item}
-                                            href={`#${item}`}
-                                            className={`capitalize ${activeSection === item
-                                                ? "text-blue-600 dark:text-blue-400 font-medium"
-                                                : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                                                } transition-colors`}
-                                        >
-                                            {item}
-                                        </a>
-                                    ))}
-                                </div>
+                            {/* Logo with animation */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <a
+                                    href="#home"
+                                    className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2"
+                                >
+                                    <motion.span
+                                        whileHover={{ scale: 1.1 }}
+                                        className="text-blue-600 dark:text-blue-400"
+                                    >
+                                        &lt;/&gt;
+                                    </motion.span>
+                                    <span className="hidden sm:inline">Portfolio</span>
+                                    <span className="sm:hidden">JG</span>
+                                </a>
+                            </motion.div>
+
+                            {/* Desktop Navigation */}
+                            <div className="hidden md:flex items-center space-x-1">
+                                {["home", "about", "skills", "projects", "contact"].map((item) => (
+                                    <motion.a
+                                        key={item}
+                                        href={`#${item}`}
+                                        className={`capitalize px-4 py-2 rounded-lg transition-all ${activeSection === item
+                                            ? "text-blue-600 dark:text-blue-400 font-medium bg-blue-50/50 dark:bg-gray-800"
+                                            : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+                                            }`}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            duration: 0.3,
+                                            delay: 0.1 * ["home", "about", "skills", "projects", "contact"].indexOf(item)
+                                        }}
+                                        whileHover={{
+                                            scale: 1.05,
+                                            backgroundColor: activeSection === item
+                                                ? 'rgba(59, 130, 246, 0.1)'
+                                                : 'rgba(0, 0, 0, 0.05)'
+                                        }}
+                                    >
+                                        {item}
+                                        {activeSection === item && (
+                                            <motion.span
+                                                className="block h-0.5 bg-blue-600 dark:bg-blue-400 mt-1"
+                                                layoutId="header-underline"
+                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                    </motion.a>
+                                ))}
+                            </div>
+
+                            {/* Mobile menu button */}
+                            <div className="md:hidden flex items-center">
+                                <motion.button
+                                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+                                    whileTap={{ scale: 0.9 }}
+                                    aria-label="Toggle menu"
+                                >
+                                    {isMobileMenuOpen ? (
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                        </svg>
+                                    )}
+                                </motion.button>
                             </div>
                         </div>
+
+                        {/* Mobile Menu */}
+                        {isMobileMenuOpen && (
+                            <motion.div
+                                className="md:hidden mt-4 pb-4 space-y-3"
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                {["home", "about", "skills", "projects", "contact"].map((item) => (
+                                    <motion.a
+                                        key={item}
+                                        href={`#${item}`}
+                                        className={`block capitalize px-4 py-3 rounded-lg transition-all ${activeSection === item
+                                            ? "text-blue-600 dark:text-blue-400 font-medium bg-blue-50 dark:bg-gray-800"
+                                            : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                            }`}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            duration: 0.3,
+                                            delay: 0.05 * ["home", "about", "skills", "projects", "contact"].indexOf(item)
+                                        }}
+                                        whileHover={{ scale: 1.02 }}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {item}
+                                    </motion.a>
+                                ))}
+                            </motion.div>
+                        )}
                     </nav>
                 </header>
 
