@@ -127,7 +127,7 @@ const Portfolio = () => {
         console.log(formData);
         // Reset form after submission
         setFormData({ name: "", email: "", message: "" });
-       
+
         emailjs.send(
             'service_43aocer',
             'template_hh23xha',
@@ -264,10 +264,24 @@ const Portfolio = () => {
                 <main className="pt-20">
                     <section id="home" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
                         {/* Animated background elements - reduced on mobile */}
-                        <div className="absolute inset-0 overflow-hidden">
-                            <div className="absolute top-1/4 left-1/4 w-16 h-16 sm:w-32 sm:h-32 rounded-full bg-blue-400 opacity-10 dark:opacity-5 blur-xl sm:blur-3xl animate-float"></div>
-                            <div className="absolute bottom-1/3 right-1/3 w-20 h-20 sm:w-40 sm:h-40 rounded-full bg-purple-400 opacity-10 dark:opacity-5 blur-xl sm:blur-3xl animate-float-delay"></div>
+                        <div className="absolute inset-0 overflow-hidden -z-10">
+                            {/* Blue Floating Glow */}
+                            <div
+                                className="absolute top-1/4 left-1/4 w-16 h-16 sm:w-32 sm:h-32 rounded-full 
+                                bg-gradient-to-br from-blue-400 via-indigo-400 to-transparent 
+                                opacity-20 dark:opacity-10 blur-2xl sm:blur-[80px] 
+                                animate-float shadow-[0_0_50px_10px_rgba(59,130,246,0.3)]"
+                            ></div>
+
+                            {/* Purple Floating Glow */}
+                            <div
+                                className="absolute bottom-1/3 right-1/3 w-20 h-20 sm:w-40 sm:h-40 rounded-full 
+                                bg-gradient-to-tr from-purple-400 via-pink-400 to-transparent 
+                                opacity-20 dark:opacity-10 blur-2xl sm:blur-[80px] 
+                                animate-float-delay shadow-[0_0_50px_10px_rgba(168,85,247,0.3)]"
+                            ></div>
                         </div>
+
 
                         <div className="text-center relative z-10 max-w-4xl mx-auto w-full">
                             {/* Profile image with responsive sizing */}
@@ -289,58 +303,107 @@ const Portfolio = () => {
                             >
                                 {/* Animated gradient border */}
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 0.5 }}
-                                    className="absolute inset-0 rounded-full p-0.5 sm:p-1"
+                                    initial={{ opacity: 0, scale: 0.9, rotate: 0 }}
+                                    animate={{ opacity: 1, scale: 1, rotate: 360 }}
+                                    transition={{
+                                        delay: 0.5,
+                                        duration: 3,
+                                        ease: "easeInOut",
+                                        repeat: Infinity,
+                                        repeatType: "loop"
+                                    }}
+                                    className="absolute inset-0 rounded-full p-1 sm:p-1.5 
+                                        shadow-[0_0_50px_15px_rgba(139,92,246,0.4)] 
+                                        ring-4 ring-pink-400/30 
+                                        -z-10"
                                     style={{
-                                        background: 'conic-gradient(from 180deg at 50% 50%, #3b82f6, #8b5cf6, #3b82f6)'
+                                        background: `conic-gradient(
+                                            from 180deg at 50% 50%, 
+                                            #3b82f6, #6366f1, #8b5cf6, 
+                                            #ec4899, #f472b6, #3b82f6
+                                            )`
                                     }}
                                 >
-                                    <div className="absolute inset-0 rounded-full bg-white dark:bg-gray-900 backdrop-blur-sm"></div>
+                                    <div className="absolute inset-0 rounded-full 
+                                        bg-white dark:bg-gray-900 
+                                        backdrop-blur-md shadow-inner 
+                                        ring-1 ring-white/10 dark:ring-gray-700/20" />
                                 </motion.div>
+
+
 
                                 {/* Glow effect - reduced on mobile */}
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 0.2, scale: 1 }}
-                                    transition={{ delay: 0.7 }}
-                                    className="absolute -inset-1 sm:-inset-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 blur-lg sm:blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-20 transition-all duration-500 -z-10"
+                                    initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+                                    animate={{ opacity: 0.3, scale: 1, rotate: 360 }}
+                                    transition={{
+                                        delay: 0.7,
+                                        duration: 1.5,
+                                        ease: "easeInOut",
+                                        repeat: Infinity,
+                                        repeatType: "loop"
+                                    }}
+                                    className="absolute -inset-1 sm:-inset-2 rounded-full 
+                                                bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 
+                                                blur-xl sm:blur-3xl 
+                                                opacity-0 group-hover:opacity-50 dark:group-hover:opacity-30 
+                                                transition-all duration-700 
+                                                shadow-[0_0_60px_10px_rgba(99,102,241,0.4),0_0_90px_20px_rgba(139,92,246,0.3)] 
+                                                ring-4 ring-offset-2 ring-blue-400/40 ring-inset 
+                                                animate-pulse-slow 
+                                                -z-10"
                                 />
+
+
 
                                 {/* Main image */}
                                 <motion.img
                                     src="/pic1.jpg"
                                     alt="Jayant Kumar Gupta"
-                                    className="w-full h-full rounded-full object-cover relative z-10 border-2 sm:border-4 border-white dark:border-gray-800 shadow-lg sm:shadow-2xl"
+                                    className="w-full h-full rounded-full object-cover relative z-10 
+                                                border-2 sm:border-4 border-white dark:border-gray-800 
+                                                shadow-xl sm:shadow-[0_20px_50px_rgba(59,130,246,0.35)] 
+                                                transition-all duration-300 ease-in-out"
                                     whileHover={{
-                                        scale: 1.05,
-                                        boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.25)'
+                                        scale: 1.08,
+                                        rotateZ: 2,
+                                        rotateY: 3,
+                                        boxShadow: '0 35px 65px -15px rgba(59,130,246,0.35)',
                                     }}
                                     transition={{
-                                        scale: { type: "spring", stiffness: 300, damping: 10 },
+                                        scale: { type: "spring", stiffness: 250, damping: 12 },
+                                        rotateZ: { duration: 0.3 },
+                                        rotateY: { duration: 0.3 },
                                         boxShadow: { duration: 0.3 }
                                     }}
                                     style={{
-                                        transformStyle: 'preserve-3d'
+                                        transformStyle: 'preserve-3d',
+                                        backfaceVisibility: 'hidden',
+                                        perspective: 1000,
                                     }}
                                 />
 
+
                                 {/* Animated rings - simplified on mobile */}
                                 <motion.div
-                                    className="absolute inset-0 rounded-full border-2 sm:border-4 border-transparent border-t-blue-500 border-r-purple-500 -z-10"
-                                    initial={{ rotate: 0, opacity: 0 }}
-                                    animate={{ rotate: 360, opacity: 1 }}
+                                    className="absolute inset-0 rounded-full border-4 sm:border-8 border-transparent 
+                                                border-t-blue-500 border-r-purple-500 border-b-pink-500 border-l-cyan-500
+                                                bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500
+                                                animate-spin-slow blur-[1px] opacity-80 shadow-2xl -z-10"
+                                    initial={{ rotate: 0, opacity: 0, scale: 0.9 }}
+                                    animate={{ rotate: 360, opacity: 1, scale: 1 }}
                                     transition={{
                                         rotate: {
-                                            duration: 15,
+                                            duration: 20,
                                             repeat: Infinity,
                                             ease: "linear",
-                                            delay: 0.9
+                                            delay: 0.5,
                                         },
-                                        opacity: { duration: 0.5 }
+                                        opacity: { duration: 1 },
+                                        scale: { duration: 1 },
                                     }}
                                 />
+
 
                                 {/* Floating dots decoration - smaller on mobile */}
                                 <motion.div
@@ -370,7 +433,7 @@ const Portfolio = () => {
                                 }}
                                 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight"
                             >
-                                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Jayant Kumar Gupta</span>
+                                नमस्कार , I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">Jayant Kumar Gupta</span>
                             </motion.h1>
 
                             {/* Animated typing text - responsive sizing */}
