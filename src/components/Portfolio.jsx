@@ -87,20 +87,15 @@ const Portfolio = () => {
         },
     ];
 
-    // const experience = [
-    //     {
-    //         company: "Tech Solutions Inc",
-    //         role: "Senior Full Stack Developer",
-    //         period: "2020 - Present",
-    //         description: "Led development of enterprise-scale applications"
-    //     },
-    //     {
-    //         company: "Digital Innovations",
-    //         role: "Frontend Developer",
-    //         period: "2018 - 2020",
-    //         description: "Developed responsive web applications"
-    //     }
-    // ];
+    const certification = [
+        {
+            organization: "Sk Deft",
+            Domain: "Python",
+            Certification: "ST-V-2022/27",
+            Description: "Successfully completed Python training covering core programming concepts such as variables, data types, control structures, functions, file handling, and error handling. Gained hands-on experience with object-oriented programming, working with libraries like NumPy and Pandas, and building basic projects to strengthen problem-solving skills."
+        },
+
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -150,7 +145,7 @@ const Portfolio = () => {
                 <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg z-50 transition-all duration-300 border-b border-gray-200/50 dark:border-gray-700/30">
                     <nav className="container mx-auto px-4 sm:px-6 py-3">
                         <div className="flex items-center justify-between">
-                            {/* Logo with animation */}
+
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -173,7 +168,7 @@ const Portfolio = () => {
 
                             {/* Desktop Navigation */}
                             <div className="hidden md:flex items-center space-x-1">
-                                {["home", "about", "skills", "projects", "contact"].map((item) => (
+                                {["home", "about", "skills", "projects", "certification", "contact"].map((item) => (
                                     <motion.a
                                         key={item}
                                         href={`#${item}`}
@@ -185,7 +180,7 @@ const Portfolio = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{
                                             duration: 0.3,
-                                            delay: 0.1 * ["home", "about", "skills", "projects", "contact"].indexOf(item)
+                                            delay: 0.1 * ["home", "about", "skills", "projects", "certification", "contact"].indexOf(item)
                                         }}
                                         whileHover={{
                                             scale: 1.05,
@@ -236,7 +231,7 @@ const Portfolio = () => {
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                {["home", "about", "skills", "projects", "contact"].map((item) => (
+                                {["home", "about", "skills", "projects", "certification", "contact"].map((item) => (
                                     <motion.a
                                         key={item}
                                         href={`#${item}`}
@@ -248,7 +243,7 @@ const Portfolio = () => {
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
                                             duration: 0.3,
-                                            delay: 0.05 * ["home", "about", "skills", "projects", "contact"].indexOf(item)
+                                            delay: 0.05 * ["home", "about", "skills", "projects", "certification", "contact"].indexOf(item)
                                         }}
                                         whileHover={{ scale: 1.02 }}
                                         onClick={() => setIsMobileMenuOpen(false)}
@@ -790,27 +785,110 @@ const Portfolio = () => {
                         </div>
                     </section>
 
-                    {/* <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800">
+                    <section id="certification" className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
                         <div className="container mx-auto px-6">
-                            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">Experience</h2>
-                            <div className="max-w-3xl mx-auto">
-                                {experience.map((exp, index) => (
-                                    <div
-                                        key={exp.company}
-                                        className="relative pl-8 pb-8 border-l-2 border-blue-600 dark:border-blue-400 last:pb-0"
+                            {/* Section Header */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true }}
+                                className="text-center mb-16"
+                            >
+                                <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+                                    My <span className="text-blue-600 dark:text-blue-400">Certifications</span>
+                                </h2>
+                                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                                    Validated proof of my skills and professional development
+                                </p>
+                            </motion.div>
+
+                            {/* Timeline with Certificate Images */}
+                            <div className="max-w-4xl mx-auto relative">
+                                <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-blue-600/20 to-transparent dark:from-blue-400/20"></div>
+
+                                {certification.map((certi, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        viewport={{ once: true }}
+                                        className={`relative pl-10 md:pl-0 pb-12 last:pb-0 group ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}
                                     >
-                                        <div className="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
-                                        <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg">
-                                            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{exp.role}</h3>
-                                            <h4 className="text-blue-600 dark:text-blue-400 mb-2">{exp.company}</h4>
-                                            <p className="text-gray-600 dark:text-gray-300 mb-2">{exp.period}</p>
-                                            <p className="text-gray-600 dark:text-gray-300">{exp.description}</p>
+                                        {/* Timeline Dot */}
+                                        <div className="absolute left-0 md:left-1/2 top-0 w-6 h-6 flex items-center justify-center transform md:-translate-x-1/2 -translate-y-1 z-10">
+                                            <div className="w-4 h-4 bg-blue-600 dark:bg-blue-400 rounded-full group-hover:w-6 group-hover:h-6 transition-all duration-300"></div>
                                         </div>
-                                    </div>
+
+                                        {/* Certificate Card */}
+                                        <div className={`bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden ${index % 2 === 0 ? 'md:mr-6' : 'md:ml-6'}`}>
+                                            {/* Certificate Image Preview */}
+                                            <div
+                                                className="relative h-48 bg-gray-100 dark:bg-gray-600 cursor-pointer border-b border-gray-200 dark:border-gray-600"
+                                                onClick={() => window.open('/certificate.jpg', '_blank')}
+                                            >
+                                                <img
+                                                    src="/certificate.jpg"
+                                                    alt={certi.Certification}
+                                                    className="absolute inset-0 w-full h-full object-contain p-4"
+                                                />
+                                                <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-colors flex items-center justify-center">
+                                                    <span className="bg-white/90 dark:bg-gray-800/90 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                        </svg>
+                                                        View Full Certificate
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            {/* Certificate Details */}
+                                            <div className="p-6">
+                                                <div className="flex justify-between items-start mb-3">
+                                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                                                        {certi.organization}
+                                                    </h3>
+                                                    <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full">
+                                                        {certi.Domain}
+                                                    </span>
+                                                </div>
+
+                                                <h4 className="text-blue-600 dark:text-blue-400 mb-2">
+                                                    {certi.Certification}
+                                                </h4>
+
+                                                {/* Enhanced Description */}
+                                                <div className="bg-gray-50 dark:bg-gray-600/20 rounded-lg p-4 mb-4">
+                                                    <p className="text-gray-700 dark:text-gray-300">
+                                                        {certi.Description}
+                                                    </p>
+                                                </div>
+
+                                                {/* Verification */}
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                                                        10 August 2022
+                                                    </span>
+                                                    <button
+                                                        onClick={() => window.open('/certificate.jpg', '_blank')}
+                                                        className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+                                                    >
+                                                        Verify Certificate
+                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
-                    </section> */}
+                    </section>
+                    {/* Contact Section */}
+
 
                     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
                         <div className="container mx-auto px-4 sm:px-6">
