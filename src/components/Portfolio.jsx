@@ -579,6 +579,7 @@ const Portfolio = () => {
                             </div>
                         </div>
                     </section>
+
                     <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
                         <div className="container mx-auto px-4 sm:px-6">
                             <motion.h2
@@ -591,35 +592,59 @@ const Portfolio = () => {
                                 My <span className="text-blue-600 dark:text-blue-400">Skills</span>
                             </motion.h2>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {/* 3D Container */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 perspective-1000">
                                 {skills.map((skill, index) => (
                                     <motion.div
                                         key={skill.name}
-                                        initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        initial={{ opacity: 0, y: 30, rotateX: 45, scale: 0.9 }}
+                                        whileInView={{
+                                            opacity: 1,
+                                            y: 0,
+                                            rotateX: 0,
+                                            scale: 1
+                                        }}
                                         transition={{
-                                            duration: 0.6,
+                                            duration: 0.8,
                                             delay: index * 0.1,
                                             type: "spring",
                                             stiffness: 100
                                         }}
                                         viewport={{ once: true, margin: "-50px" }}
                                         whileHover={{
-                                            y: -5,
-                                            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
+                                            y: -10,
+                                            rotateY: 5,
+                                            scale: 1.02,
+                                            boxShadow: '0 20px 25px -5px rgba(59, 130, 246, 0.2)',
+                                            transition: { duration: 0.3 }
                                         }}
-                                        className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-600"
+                                        className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-600 transform-style-preserve-3d"
+                                        style={{
+                                            transformOrigin: 'center bottom',
+                                            backfaceVisibility: 'hidden',
+                                            willChange: 'transform'
+                                        }}
                                     >
+                                        {/* 3D Card Content */}
                                         <div className="flex items-center gap-4 mb-4">
-                                            <div className="text-4xl text-blue-600 dark:text-blue-400">
-                                                {skill.icon}
-                                            </div>
+                                            <motion.div
+                                                whileHover={{
+                                                    rotateY: 180,
+                                                    transition: { duration: 0.6 }
+                                                }}
+                                                className="text-4xl text-blue-600 dark:text-blue-400 transform-style-preserve-3d"
+                                            >
+                                                <div className="backface-hidden">
+                                                    {skill.icon}
+                                                </div>
+                                            </motion.div>
                                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
                                                 {skill.name}
                                             </h3>
                                         </div>
 
-                                        <div className="w-full bg-gray-100 dark:bg-gray-600 rounded-full h-3 mb-2 overflow-hidden">
+                                        {/* 3D Progress Bar */}
+                                        <div className="w-full bg-gray-100 dark:bg-gray-600 rounded-full h-3 mb-2 overflow-hidden transform-style-preserve-3d">
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: `${skill.level}%` }}
@@ -632,7 +657,8 @@ const Portfolio = () => {
                                                 viewport={{ once: true }}
                                                 className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500"
                                                 style={{
-                                                    boxShadow: '0 2px 10px rgba(59, 130, 246, 0.3)'
+                                                    boxShadow: '0 2px 10px rgba(59, 130, 246, 0.3)',
+                                                    transform: 'translateZ(20px)'
                                                 }}
                                             />
                                         </div>
@@ -641,38 +667,34 @@ const Portfolio = () => {
                                             <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
                                                 Proficiency
                                             </span>
-                                            <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                                            <motion.span
+                                                className="text-sm font-bold text-blue-600 dark:text-blue-400"
+                                                whileHover={{ scale: 1.2 }}
+                                            >
                                                 {skill.level}%
-                                            </span>
+                                            </motion.span>
                                         </div>
                                     </motion.div>
                                 ))}
                             </div>
 
-                            {/* Additional skills visualization */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                transition={{ delay: 0.5 }}
-                                viewport={{ once: true }}
-                                className="mt-16 bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md"
-                            >
-                                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
-                                    Skill Distribution
-                                </h3>
-                                <div className="flex flex-wrap gap-3">
-                                    {skills.map((skill) => (
-                                        <motion.div
-                                            key={`tag-${skill.name}`}
-                                            whileHover={{ scale: 1.05 }}
-                                            className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
-                                        >
-                                            {skill.name}
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </motion.div>
                         </div>
+
+                        {/* Add this to your global CSS or Tailwind config */}
+                        <style jsx global>{`
+                        .perspective-1000 {
+                        perspective: 1000px;
+                        }
+                        .perspective-500 {
+                        perspective: 500px;
+                        }
+                        .transform-style-preserve-3d {
+                        transform-style: preserve-3d;
+                        }
+                        .backface-hidden {
+                        backface-visibility: hidden;
+                        }
+                    `}</style>
                     </section>
 
                     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
