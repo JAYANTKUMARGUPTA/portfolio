@@ -46,6 +46,14 @@ const Portfolio = () => {
             demo: "https://diabetes-risk-assessment-1.onrender.com/"
         },
         {
+            title: "Chat Application",
+            description: "Real-time chat application built with Node.js and Socket.IO for seamless messaging and communication between users.",
+            image: "https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=500&q=60",
+            tech: ["Node.js", "Socket.IO", "HTML", "CSS", "JavaScript"],
+            github: "https://github.com/JAYANTKUMARGUPTA/Simple-chat-Application",
+            demo: "https://simple-chat-application-wi91.onrender.com/"
+        },
+        {
             title: "Financial Tracker",
             description: "Personal financial tracking application with real-time expense monitoring and budget management using React and Tailwind CSS.",
             image: "https://plus.unsplash.com/premium_photo-1679923913530-16c91821a213?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fGZpbmFuY2lhbHxlbnwwfHwwfHx8MA%3D%3D",
@@ -140,8 +148,8 @@ const Portfolio = () => {
     };
 
     return (
-        <div className={`${darkMode ? "dark" : ""}`}>
-            <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div>
+            <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 transition-all duration-500">
                 <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg z-50 transition-all duration-300 border-b border-gray-200/50 dark:border-gray-700/30">
                     <nav className="container mx-auto px-4 sm:px-6 py-3">
                         <div className="flex items-center justify-between">
@@ -561,7 +569,7 @@ const Portfolio = () => {
                                         transition={{ duration: 0.5, delay: 0.8 }}
                                     >
                                         <a
-                                            href="/documents/Jayant resume (MCA).pdf"
+                                            href="/documents/resume.pdf"
                                             download="Jayant_Kumar_Gupta_Resume.pdf"
                                             className="flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-lg hover:shadow-blue-500/30"
                                         >
